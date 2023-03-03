@@ -14,6 +14,18 @@ import static org.mockito.Mockito.when;
 
 class BookApiTest {
 
+
+    @Test
+    public void shouldAddBook(){
+        BookApi bookApiMock = Mockito.mock(BookApi.class);
+        Book bookToTest = new Book("Jezyk SQL co to ?","873574585");
+        Mockito.when(bookApiMock.addBook(Mockito.any(Book.class))).thenReturn(bookToTest);
+        Book bookAdded = bookApiMock.addBook(bookToTest);
+        Assertions.assertEquals(bookAdded.getTitle(),"Jezyk SQL co to ?");
+
+
+    }
+
     @Test
     public void shouldReturnALlBooksFromDataBase(){
         BookApi bookApiMock = Mockito.mock(BookApi.class);

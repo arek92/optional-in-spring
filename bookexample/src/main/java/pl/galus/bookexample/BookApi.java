@@ -34,6 +34,11 @@ public class BookApi {
     public List<Book>getAllBooks(){
         return bookRepo.findAll();
     }
+    @PostMapping("/addBook")
+    public Book addBook(@RequestBody Book book){
+         bookRepo.save(book);
+        return book;
+    }
 
 
 }
