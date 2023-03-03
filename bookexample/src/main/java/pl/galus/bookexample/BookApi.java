@@ -3,6 +3,8 @@ package pl.galus.bookexample;
 import org.springframework.web.bind.annotation.*;
 import pl.galus.bookexample.exception.BookNotFoundException;
 
+import java.util.List;
+
 @RestController
 public class BookApi {
 
@@ -27,6 +29,10 @@ public class BookApi {
                     newBook.setId(id);
                    return bookRepo.save(newBook);
                 });
+    }
+    @GetMapping("/getAllBooks")
+    public List<Book>getAllBooks(){
+        return bookRepo.findAll();
     }
 
 
