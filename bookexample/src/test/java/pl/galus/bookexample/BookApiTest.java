@@ -14,6 +14,15 @@ import static org.mockito.Mockito.when;
 
 class BookApiTest {
 
+    @Test
+    public void shouldReturnALlBooksFromDataBase(){
+        BookApi bookApiMock = Mockito.mock(BookApi.class);
+        Mockito.when(bookApiMock.getAllBooks()).thenReturn(booksToTest());
+        List<Book> result = bookApiMock.getAllBooks();
+        Assertions.assertEquals(booksToTest().size(),result.size());
+
+    }
+
 
 
     @Test
