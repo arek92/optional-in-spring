@@ -1,0 +1,44 @@
+version: '3.1'
+services:
+
+  database:
+    container_name: 'mysql'
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: arek1992
+      MYSQL_PASSWORD: arek1992
+      MYSQL_USER: uzytkownik
+      MYSQL_DATABASE: dockerbaza
+    ports:
+      - "3306:3306"
+
+    restart: always
+  api:
+    build: ./bookexample
+    ports:
+      - "8099:8099"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/dockerbaza?autoReconnect=true&useSSL=false
+      SERVER_PORT: 8099
+    depends_on:
+      - database
+    command: bash -c "sleep 10 && java -jar bookexample-0.0.1-SNAPSHOT.jar"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
